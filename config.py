@@ -6,32 +6,46 @@ class InitialConfig(Ui):
         super().__init__()
         self.banner()
         self.list(self.options_array())
+        self.input()
 
     def write_out(self):
         pass 
     
     def options_array(self):
         options = {
-                "name": {
+                0: {
                     "value": None, 
-                    "txt": "0: Name"
+                    "txt": "0: Name",
+                    "desc": "Username"
                     },
-                "email": {
+                1: {
                     "value": None,
-                    "txt": "1: Email Address"
+                    "txt": "1: Email Address",
+                    "desc": "Your Email Address"
                     },
-                "messaging": {
+                2: {
                     "value": False,
-                    "txt": "2: Messaging"
+                    "txt": "2: Messaging",
+                    "desc": "Your Messaging Preferences"
                     },
-                "movie_folder": {
+                3: {
                     "value": None,
-                    "txt": "3: Movie Folder"
+                    "txt": "3: Movie Folder",
+                    "desc": "Your Movie Folder"
                     },
-                "tv_folder": {
+                4: {
                     "value": None,
-                    "txt": "4: Tv Folder"
+                    "txt": "4: Tv Folder",
+                    "desc": "Your Tv Folder"
                 }
             }
         return options
 
+    def input(self):
+        from pudb import set_trace; set_trace()
+        print('Choose an option')
+        opt = self.options_array()
+        pntr = input()
+        pntr = int(pntr)
+        print('Set ', opt[pntr]['desc'])
+        answer = input()
