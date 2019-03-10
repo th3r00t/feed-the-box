@@ -22,6 +22,9 @@ class InitialConfig(Ui):
              # TODO Enter main program loop
     
     def options_array(self):
+        """
+        Default values for initial program configuration
+        """
         options = {
                 0: {
                     "id": "uname",
