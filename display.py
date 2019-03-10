@@ -54,7 +54,7 @@ class Ui:
             try:
                 print(self.box_v,
                         items[item]['txt'], 
-                        ' '*(self.w - len(items[item]['txt']) - 5 - len(items[item]['value'])),
+                        ' '*(self.w - len(items[item]['txt']) - 6 - len(items[item]['value'])),
                         items[item]['value'],
                         self.box_v
                         )
@@ -74,8 +74,14 @@ class Ui:
             if user_input > len(options): 
                 return
             else:
+                self.clear()
+                self.banner()
                 print('Enter your', options[user_input]['desc'])
                 options[user_input]['value'] = input()
+                import time
+                self.clear()
+                self.banner()
+                self.list(options)
                 print(options[user_input]['desc'], '=', options[user_input]['value'])
         except:
             return
