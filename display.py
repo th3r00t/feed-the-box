@@ -67,15 +67,15 @@ class Ui:
         sys.stdout.write(self.clr_term)
         
     def input(self, options):        
-        from pudb import set_trace; set_trace()
         print('Choose an option')
         user_input = input()
         try:
             user_input = int(user_input)
-            if user_input < len(options) -1:
+            if user_input > len(options): 
                 return
             else:
-               options[user_input]['value'] = input()
-               print(options[user_input][desc], '=', options[user_input]['value'])
+                print('Enter your', options[user_input]['desc'])
+                options[user_input]['value'] = input()
+                print(options[user_input]['desc'], '=', options[user_input]['value'])
         except:
             return
