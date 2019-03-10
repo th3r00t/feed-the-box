@@ -3,11 +3,19 @@ import sys
 
 class Ui:
 
-    def __init__(self):
+    def __init__(self, **kwargs):
         h, w = os.popen('stty size', 'r').read().split()
         self.w, self.h = int(w), int(h)
         self.vc = (self.w / 2)
-        # https://en.wikipedia.org/wiki/Box-drawing_character#Unicode    
+        # https://en.wikipedia.org/wiki/Box-drawing_character#Unicode
+        try:
+            if kwargs['path']:
+                self.config = kwargs['path']
+            elif not self.config:
+                self.config = None
+        except KeyError:
+            pass
+
         self.box_h = '\u2501'
         self.box_tl = '\u250F'
         self.box_tr = '\u2513'
@@ -73,12 +81,13 @@ class Ui:
             user_input = int(user_input)
             if user_input > len(options): 
                 return
+            elif options[user_input]["id"] == "write_config":
+               self.write_out(options)
             else:
                 self.clear()
                 self.banner()
                 print('Enter your', options[user_input]['desc'])
                 options[user_input]['value'] = input()
-                import time
                 self.clear()
                 self.banner()
                 self.list(options)

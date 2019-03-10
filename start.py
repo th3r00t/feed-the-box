@@ -2,6 +2,7 @@ import os
 import json
 from display import Ui
 from config import InitialConfig
+from config import ReadConfig
 
 global CONFIG
 # CONFIG = load_config_file
@@ -14,9 +15,12 @@ def load_config_file():
     path = path[0:-sl]
     try:
         with open(path+'config.json') as f:
-            CONFIG = json.load(f)
+            cfg_array = json.load(f)
+            config = ReadConfig(cfg_array)
+            return config
     except FileNotFoundError:
         global Ui
-        InitialConfig()
+        InitialConfig(path+'config.json')
 
 CONFIG = load_config_file()
+
