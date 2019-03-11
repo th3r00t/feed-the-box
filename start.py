@@ -23,4 +23,7 @@ def load_config_file():
         InitialConfig(path+'config.json')
 
 CONFIG = load_config_file()
+from search import TorrentSearch
+search = TorrentSearch()
+search.do_search('Ironman')
 
