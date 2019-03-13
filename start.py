@@ -22,6 +22,7 @@ def load_config_file():
         global Ui
         InitialConfig(path+'config.json')
 
+
 CONFIG = load_config_file()
 from search import TorrentSearch
 search = TorrentSearch()
