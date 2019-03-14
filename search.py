@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-
+import json
 
 
 class TorrentSearch():
@@ -12,8 +12,7 @@ class TorrentSearch():
         search = "https://thepiratebay.rocks/search/%s/1/99/200" % (q)
         html = self.html(search)
         self.search = q
-        # self.print(html)
-        self.write_html(html)
+        self.results(html)
 
     @staticmethod
     def html(search):
@@ -21,22 +20,32 @@ class TorrentSearch():
 
     @staticmethod
     def print(html):
-        bowl = BeautifulSoup(html.content, 'html5lib')
+        bowl = BeautifulSoup(html.content, 'html5')
         print(bowl.find('div',{'id': 'content'}))
         return
 
-    def write_html(self, html):
+    def results(self, html):
         bowl = BeautifulSoup(html.content, 'lxml')
         content = bowl.select('.detName')
         holding = []
         for tag in content:
             parent = tag.find_parent()
-            holding.append(parent)
-        with open('debug/'+self.search+'.html', 'w') as file:
-            file.write('<table>')
-            for result in holding:
-                file.write('<tr>')
-                file.writelines(result.prettify())
-                file.write('</tr>')
-            file.write('</table>')
+            siblings = parent.fetchNextSiblings()
+            title = tag.text
+            url = tag.contents[1].attrs['href']
+            magnet = tag.next_sibling.next_sibling.attrs['href']
+            seeders = siblings[0].text
+            leechers = siblings[1].text
+            result = {
+                'title': title,
+                'url': url,
+                'magnet': magnet,
+                'seeders': seeders,
+                'leechers': leechers
+                }
+            holding.append(result)
+        with open('debug/'+self.search+'.json', 'w') as file:
+            json.dump(holding, file)
+        return holding
+
 

@@ -51,12 +51,39 @@ class Ui:
                 )
         print(self.box_bl+self.box_h*(self.w -2)+self.box_br)
 
+    def search_box(self):
+        sys.stdout.write(self.green)
+        search_prompt = "Choose your search options"
+        search_prompt2 = "The default option is to search videos"
+        search_prompt3 = "If that is ok then just type your search in below"
+        print(
+            self.box_v,
+            ' '*(self.center(search_prompt)-1),
+            search_prompt,
+            ' '*(self.center(search_prompt)-2),
+            self.box_v
+            )
+        print(
+            self.box_v,
+            ' '*(self.center(search_prompt2)-1),
+            search_prompt2,
+            ' '*(self.center(search_prompt2)-2),
+            self.box_v
+            )
+        print(
+            self.box_v,
+            ' '*(self.center(search_prompt3)-1),
+            search_prompt3,
+            ' '*(self.center(search_prompt3)-3),
+            self.box_v
+            )
+
     def center(self, txt):
         tlen = len(txt)
         center = int((self.vc - (tlen / 2)-1))
         return center
-    
-    def list(self, items): 
+
+    def list(self, items):
         sys.stdout.write(self.green)
         for item in items:
             try:

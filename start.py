@@ -3,6 +3,7 @@ import json
 from display import Ui
 from config import InitialConfig
 from config import ReadConfig
+from search import TorrentSearch
 
 global CONFIG
 # CONFIG = load_config_file
@@ -24,7 +25,8 @@ def load_config_file():
 
 
 CONFIG = load_config_file()
-from search import TorrentSearch
 search = TorrentSearch()
 search.do_search('Ironman')
 
+Ui.banner()
+Ui.search_box()
