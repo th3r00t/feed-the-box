@@ -19,8 +19,7 @@ class InitialConfig(Ui):
              self.clear()
              self.banner()
              print("Configuration file generated")
-             # TODO Enter main program loop
-    
+
     def options_array(self):
         """
         Default values for initial program configuration
@@ -81,3 +80,16 @@ class ReadConfig():
         self.msgprefs = cfg_array['2']['value']
         self.mv_folder = cfg_array['3']['value']
         self.tv_folder = cfg_array['4']['value']
+
+
+class SearchConfig():
+
+    def __init__(self):
+        self.array = {
+                'all': '0',
+                'audio': '100',
+                'video': '200',
+                'applications': '300',
+                'games': '400',
+                'porn': '500'
+            }
