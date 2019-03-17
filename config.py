@@ -1,5 +1,6 @@
 from display import Ui
 
+
 class InitialConfig(Ui):
 
     def __init__(self, path):
@@ -15,10 +16,10 @@ class InitialConfig(Ui):
         import json
         # path = (os.path.abspath(__file__)[0:-len(__file)]+'config.json')
         with open(self.config, 'w') as f:
-             json.dump(options, f)
-             self.clear()
-             self.banner()
-             print("Configuration file generated")
+            json.dump(options, f)
+            self.clear()
+            self.banner()
+            print("Configuration file generated")
 
     def options_array(self):
         """
@@ -27,7 +28,7 @@ class InitialConfig(Ui):
         options = {
                 0: {
                     "id": "uname",
-                    "value": None, 
+                    "value": None,
                     "txt": "0: Name",
                     "desc": "Username"
                     },
@@ -64,6 +65,7 @@ class InitialConfig(Ui):
             }
         return options
 
+
 class ReadConfig():
     """
     Returns a usable array of configuration options
@@ -83,13 +85,9 @@ class ReadConfig():
 
 
 class SearchConfig():
-
     def __init__(self):
-        self.array = {
-                'all': '0',
-                'audio': '100',
-                'video': '200',
-                'applications': '300',
-                'games': '400',
-                'porn': '500'
-            }
+        self.params()
+
+    def params(self):
+        self.array = {'all': '0', 'audio': '100', 'video': '200', 'applications': '300', 'games': '400', 'porn': '500'}
+        return self

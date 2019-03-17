@@ -21,7 +21,9 @@ class Ui:
         self.box_tr = '\u2513'
         self.box_v = '\u2503'
         self.box_bl = '\u2517'
+        self.box_blc = '\u2523'
         self.box_br = '\u251b'
+        self.box_brc = '\u252b'
         self.green = '\033[1;32m'
         self.grey_bg = '\033[47m'
         self.clr_term = '\033[m' 
@@ -29,8 +31,8 @@ class Ui:
     def clear():
         import os
         os.system('cls' if os.name == 'nt' else 'clear')
-        
-    def banner(self):
+
+    def banner_standalone(self):
         sys.stdout.write(self.green)
         title = 'Feed The Box'
         slogan = 'Your media servers hungry, let\'s feed it'
@@ -51,12 +53,55 @@ class Ui:
                 )
         print(self.box_bl+self.box_h*(self.w -2)+self.box_br)
 
-    def search_box(self):
+
+    def banner(self):
+        sys.stdout.write(self.green)
+        title = 'Feed The Box'
+        slogan = 'Your media servers hungry, let\'s feed it'
+        self.clear()
+        print(self.box_tl+self.box_h*(self.w -2)+self.box_tr)
+        # sys.stdout.write(self.clr_term)
+        print(self.box_v, \
+                ' '*(self.center(title)-1), \
+                title, \
+                ' '*(self.center(title)-2), \
+                self.box_v \
+                )
+        print(self.box_v, \
+                ' '*(self.center(slogan)-1), \
+                slogan, \
+                ' '*(self.center(slogan)-2), \
+                self.box_v \
+                )
+        print(self.box_blc+self.box_h*(self.w -2)+self.box_brc)
+
+    def line_wrapper(self, line):
+        # self.h, self.w
+        try:
+            justify = line[1]
+            line = line[0]
+            if justify == 'l':
+                print(self.box_v, ' ', line, ' '*(self.w - (len(justify) + 4)), ' ', self.box_v)
+            elif justify == 'c':
+                print(self.box_v, ' '*(self.center(line)-1), line, ' '*(self.center(line)-2), self.box_v)
+            else:
+                import pudb; pu.db
+                line_len = len(line)
+                ww = self.w - line_len
+                print(self.box_v, ' '*ww, line, ' ', self.box_v)
+        except KeyError:
+                print(self.box_v, ' ', line, ' '*(self.w - (len(justify) + 4)), ' ', self.box_v)
+
+    def search_box(self, session):
         sys.stdout.write(self.green)
         search_prompt = "Choose your search options"
         search_prompt2 = "The default option is to search videos"
         search_prompt3 = "If that is ok then just type your search in below"
-        print(
+        self.line_wrapper([search_prompt, 'c'])
+        self.line_wrapper([search_prompt2, 'r'])
+        self.line_wrapper([search_prompt3, 'l'])
+
+        """print(
             self.box_v,
             ' '*(self.center(search_prompt)-1),
             search_prompt,
@@ -76,7 +121,8 @@ class Ui:
             search_prompt3,
             ' '*(self.center(search_prompt3)-3),
             self.box_v
-            )
+            )"""
+
 
     def center(self, txt):
         tlen = len(txt)
