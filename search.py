@@ -1,8 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 import json
-
-
+import time
+import os
 class TorrentSearch():
 
     def __init__(self):
@@ -12,7 +12,7 @@ class TorrentSearch():
         search = "https://thepiratebay.rocks/search/%s/1/99/200" % (q)
         html = self.html(search)
         self.search = q
-        self.results(html)
+        return self.results(html)
 
     @staticmethod
     def html(search):
@@ -48,4 +48,30 @@ class TorrentSearch():
             json.dump(holding, file)
         return holding
 
+    def print_results(self, results, **kwargs):
+        try:
+            setnum = kwargs['set']
+        except KeyError:
+            setnum = 1
+        h, w = os.popen('stty size', 'r').read().split()
+        setsize = round((int(h) / 3) - 3)
+        for i, r in enumerate(results):
+            from pudb import set_trace; set_trace()
+            while (i < setsize * setnum):
+                if int(r['seeders']) < 1:
+                    i = i + 1
+                    pass
+                else:
+                    print(i, r['title'] + ' ' + r['seeders'] + ' ' + 'seeders')
+                    print(r['url'])
+                    i = i + 1
+                if i == setsize * setnum:
+                    print('Please Choose a #, or n for Next, p for Previous Sets')
+                    choice = input()
+                    if choice == 'n' or choice == 'N':
+                        setnum = setnum + 1
+                    elif choice == 'p' or choice == 'P':
+                        setnum = setnum - 1
+                    elif choice is int:
+                        pass
 

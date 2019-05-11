@@ -42,4 +42,7 @@ while MAIN_LOOP:
     Ui.banner()
     Ui.search_box(session)
     search = TorrentSearch()
-    search.do_search(input())
+    results = search.do_search(input())
+    search.print_results(results)
+    print('Choose Selection')
+    selection = input()
