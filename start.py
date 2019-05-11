@@ -35,10 +35,11 @@ session = {
         'sconf': SEARCH_CONFIG
         }
 
-search = TorrentSearch()
-search.do_search('Ironman')
+# search = TorrentSearch()
+# search.do_search('Ironman')
 
 while MAIN_LOOP:
     Ui.banner()
     Ui.search_box(session)
-    search = input()
+    search = TorrentSearch()
+    search.do_search(input())

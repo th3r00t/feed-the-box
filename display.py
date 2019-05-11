@@ -85,7 +85,6 @@ class Ui:
             elif justify == 'c':
                 print(self.box_v, ' '*(self.center(line)-1), line, ' '*(self.center(line)-2), self.box_v)
             else:
-                import pudb; pu.db
                 line_len = len(line)
                 ww = self.w - line_len
                 print(self.box_v, ' '*ww, line, ' ', self.box_v)
@@ -98,8 +97,8 @@ class Ui:
         search_prompt2 = "The default option is to search videos"
         search_prompt3 = "If that is ok then just type your search in below"
         self.line_wrapper([search_prompt, 'c'])
-        self.line_wrapper([search_prompt2, 'r'])
-        self.line_wrapper([search_prompt3, 'l'])
+        self.line_wrapper([search_prompt2, 'c'])
+        self.line_wrapper([search_prompt3, 'c'])
 
         """print(
             self.box_v,
