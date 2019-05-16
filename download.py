@@ -16,4 +16,5 @@ class MagnetDownloader:
             location = other
         outfile = sp.DEVNULL
         # sp.run(["deluge-console","--path=/srv/ext/Storage/"+location+" add "+magnet], stdout=outfile, stderr=outfile)
-        sp.run(["deluge-console","-p /srv/ext/Storage/"+location+" add "+magnet])
+        sp.run(["deluge-console","config --set download_location "+location])
+        sp.run(["deluge-console","add "+magnet])
