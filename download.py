@@ -8,11 +8,11 @@ class MagnetDownloader:
         movie = "/srv/ext/Storage/Movies/"
         tv = "/srv/ext/Storage/Tv Shows/"
         other = "/srv/ext/Storage/Torrents/"
-        if dl_type == "movie":
+        if dl_type == "m":
             location = movie
-        elif dl_type == "tv":
+        elif dl_type == "t":
             location = tv
-        elif dl_type == "other":
+        elif dl_type == "o":
             location = other
         outfile = sp.DEVNULL
         sp.run(["deluge-console -p" + location,"add "+magnet], stdout=outfile, stderr=outfile)
