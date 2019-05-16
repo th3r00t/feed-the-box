@@ -9,4 +9,4 @@ class MagnetDownloader:
         """
         # print(magnet)
         import subprocess
-        subprocess.run(["deluge-console","add %s"]), magnet
+        subprocess.run(["deluge-console","add %s"]) %(magnet)
