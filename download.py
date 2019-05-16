@@ -15,4 +15,4 @@ class MagnetDownloader:
         elif dl_type == "o":
             location = other
         outfile = sp.DEVNULL
-        sp.run(["deluge-console -p " + location,"add "+magnet], stdout=outfile, stderr=outfile)
+        sp.run(["deluge-console --path="+location,"add "+magnet], stdout=outfile, stderr=outfile)
