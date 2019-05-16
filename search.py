@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import json
 import time
 import os
+from download import MagnetDownloader
 class TorrentSearch():
 
     def __init__(self):
@@ -36,6 +37,7 @@ class TorrentSearch():
             magnet = tag.next_sibling.next_sibling.attrs['href']
             seeders = siblings[0].text
             leechers = siblings[1].text
+            torrent = ""
             result = {
                 'title': title,
                 'url': url,
@@ -49,6 +51,7 @@ class TorrentSearch():
         return holding
 
     def print_results(self, results, **kwargs):
+        down_links = {}
         try:
             setnum = kwargs['set']
         except KeyError:
@@ -56,14 +59,14 @@ class TorrentSearch():
         h, w = os.popen('stty size', 'r').read().split()
         setsize = round((int(h) / 3) - 3)
         for i, r in enumerate(results):
-            from pudb import set_trace; set_trace()
-            while (i < setsize * setnum):
+            if (i < setsize * setnum):
                 if int(r['seeders']) < 1:
                     i = i + 1
                     pass
                 else:
                     print(i, r['title'] + ' ' + r['seeders'] + ' ' + 'seeders')
                     print(r['url'])
+                    down_links[i] = r['magnet']
                     i = i + 1
                 if i == setsize * setnum:
                     print('Please Choose a #, or n for Next, p for Previous Sets')
@@ -72,6 +75,9 @@ class TorrentSearch():
                         setnum = setnum + 1
                     elif choice == 'p' or choice == 'P':
                         setnum = setnum - 1
-                    elif choice is int:
-                        pass
+                    else:
+                        # Entry point for downloading of torrent
+                        choice = int(choice)
+                        MagnetDownloader(down_links[choice])
+                        # print(down_links[choice])
 
