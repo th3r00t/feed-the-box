@@ -71,6 +71,8 @@ class TorrentSearch():
                 if i == setsize * setnum:
                     print('Please Choose a #, or n for Next, p for Previous Sets')
                     choice = input()
+                    print('Is this a (m)ovie, (t)v show, or (o)ther?')
+                    dl_type = input()
                     if choice == 'n' or choice == 'N':
                         setnum = setnum + 1
                     elif choice == 'p' or choice == 'P':
@@ -78,6 +80,6 @@ class TorrentSearch():
                     else:
                         # Entry point for downloading of torrent
                         choice = int(choice)
-                        MagnetDownloader(down_links[choice])
+                        MagnetDownloader(down_links[choice], dl_type)
                         # print(down_links[choice])
 

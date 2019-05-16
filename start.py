@@ -44,5 +44,5 @@ while MAIN_LOOP:
     search = TorrentSearch()
     results = search.do_search(input())
     search.print_results(results)
-    print('Choose Selection')
-    selection = input()
+#    print('Choose Selection')
+#    selection = input()
