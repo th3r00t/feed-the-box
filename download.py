@@ -7,4 +7,6 @@ class MagnetDownloader:
         """
         Implement OS call to deluge-console "add magnet" and find a way to specify download directory
         """
-        print(magnet)
+        # print(magnet)
+        import subprocess
+        subprocess.run(["deluge-console","add %s"]), magnet
