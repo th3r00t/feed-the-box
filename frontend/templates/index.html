@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Feed The Box</title>
+        {% load static %}
+        <link href="{% static "styles/desktop.css"%}" rel="stylesheet" type="text/css">
+        <link href="{% static "styles/mobile.css"%}" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono|IBM+Plex+Sans+Condensed&display=swap" rel="stylesheet">
+
+    </head>
+    <body>
+        <div class="container">
+            <div class="banner">
+                <h2 id="banner_title">Feed The BoX</h2>
+                <h2 id="banner_slogan">Your Media Servers Hungry, Let's Feed It</h2>
+                <div id="search_box">
+                    <form action="" method="post" name="search">
+                        <fieldset>
+                        <!--<label for="search">Search</label>-->
+                        <!--<input name="search" id="search" type=text size=30 />-->
+                            {% csrf_token %}
+                            {{ form }}
+                                <input type="submit" class="search_btn ui_btn" size=20 value="Search"/>
+                                <div id="search_options">
+                                    <input type="button" class="dirbtn ui_btn" size=15 value="Movies" />
+                                    <input type="button" class="dirbtn ui_btn" size=15 value="Tv Show" />
+                                    <input type="button" class="dirbtn ui_btn" size=15 value="Book" />
+                                    <input type="button" class="dirbtn ui_btn" size=15 value="Game" />
+                                    <input type="button" class="dirbtn ui_btn" size=15 value="Other" />
+                                </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <div class="content_main">
+                <div class="col_lft ui_console" id="con_lft">
+                    Please enter your search terms in the box above.<br />
+                    Results will be displayed in this console.<br />
+                    <hr class="hr_ui" />
+                    {{ torrents }}
+                </div>
+                <div class="col_rgt ui_console" id="con_rgt">
+                    <center>TMDB Results Console</center>
+                    <iframe id="tmdb" srcdoc="{{ releases }}"></iframe>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

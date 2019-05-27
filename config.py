@@ -1,5 +1,5 @@
 from display import Ui
-
+import requests
 
 class InitialConfig(Ui):
 
@@ -89,5 +89,25 @@ class SearchConfig():
         self.params()
 
     def params(self):
-        self.array = {'all': '0', 'audio': '100', 'video': '200', 'applications': '300', 'games': '400', 'porn': '500'}
+        self.array = {
+            'all': '0',
+            'audio': '100',
+            'video': '200',
+            'applications': '300',
+            'games': '400',
+            'porn': '500'
+        }
         return self
+
+
+class TmdApi():
+    def __init__(self):
+        self.v3key = "a0aaf81ae8e451a7fa098111c4680515"
+        self.v4key = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMGFhZjgxYWU4ZTQ1MWE3ZmEwOTgxMTFjNDY4MDUxNSIsInN1YiI6IjVjZTE3MGNiYzNhMzY4MjNjNTIxM2JlNiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ._PhSXtQ1mbm_ohLT3SNK-b6noQr5yiTlfYg-K34A7Wo"
+        self.docs = "https://developers.themoviedb.org/3/getting-started/introduction"
+        self.url = "https://api.themoviedb.org"
+        self.headers = {
+            'Authorization': 'Bearer {' + self.v4key + '}',
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }

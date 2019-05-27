@@ -46,8 +46,8 @@ class TorrentSearch():
                 'leechers': leechers
                 }
             holding.append(result)
-        with open('debug/'+self.search+'.json', 'w') as file:
-            json.dump(holding, file)
+        # with open('debug/'+self.search+'.json', 'w') as file:
+        #    json.dump(holding, file)
         return holding
 
     def print_results(self, results, **kwargs):
