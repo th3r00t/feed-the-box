@@ -1,4 +1,7 @@
 # from django.shortcuts import render
+
+import sys
+sys.path.insert(0, '/srv/apps/feed-the-box/')
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.shortcuts import render
@@ -8,9 +11,7 @@ from .forms import SearchForm
 from .forms import DownloadForm
 from download import MagnetDownloader
 from movinfo import TheMovieDb
-import sys
 
-sys.path.insert(0, '/home/raelon/Projects/feed-the-box/')
 from config import TmdApi
 
 

@@ -1,0 +1,43 @@
+@media only screen and (max-width: 900px) {
+    .container{
+        grid-template-rows: auto auto;
+    }
+    .banner {
+        grid-area: a;
+        grid-template-columns: auto auto auto;
+        grid-template-rows: auto auto;
+        grid-template-areas:
+            "banner_title banner_title banner_title"
+            "banner_search banner_search banner_search";
+    }
+    #banner_slogan{
+        display: none;
+    }
+    #banner_title{
+        justify-self: center;
+    }
+    #search_box{
+        justify-self: center;
+        margin-bottom: 26px;
+    }
+    #search_options {
+        justify-self: center;
+    }
+    .dirbtn{
+    width: 75.5px;
+    }
+    .content_main{
+        grid-template-areas: "console_left console_left";
+        justify-self: center;
+        grid-template-columns: auto auto;
+        grid-template-rows: auto;
+        width: 100%;
+    }
+    #con_rgt{
+        display: none;
+    }
+    #con_lft{
+        width: 100%;
+        margin-right: 0px;
+    }
+}
