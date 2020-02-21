@@ -15,6 +15,11 @@ class TorrentSearch():
         self.search = q
         return self.results(html)
 
+    def do_search_music(self, q):
+        search = "https://thepiratebay.rocks.search.%s.1/99/100" %q
+        self.search = q
+        return self.results(html)
+
     @staticmethod
     def html(search):
         return requests.get(search)
