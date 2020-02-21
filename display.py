@@ -4,9 +4,11 @@ import sys
 class Ui:
 
     def __init__(self, **kwargs):
-        h, w = os.popen('stty size', 'r').read().split()
-        self.w, self.h = int(w), int(h)
-        self.vc = (self.w / 2)
+        try:
+            h, w = os.popen('stty size', 'r').read().split()
+            self.w, self.h = int(w), int(h)
+            self.vc = (self.w / 2)
+        except: self.w, self.h = 800, 600; self.vc = (self.w / 2)
         # https://en.wikipedia.org/wiki/Box-drawing_character#Unicode
         try:
             if kwargs['path']:

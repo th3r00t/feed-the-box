@@ -1,3 +1,6 @@
+from pathlib import Path
+import os
+
 class MagnetDownloader:
 
     def __init__(self, magnet, dl_type):
@@ -5,9 +8,9 @@ class MagnetDownloader:
 
     def get_magnet(self, magnet, dl_type):
         import subprocess as sp
-        movie = "/srv/ext/Storage/Movies/"
-        tv = "/srv/ext/Storage/Tv Shows/"
-        other = "/srv/ext/Storage/Torrents/"
+        movie = Path('/srv/ext/Storage/Movies/')
+        tv = Path('/srv/ext/Storage/Tv\ Shows/')
+        other = Path('/srv/ext/Storage/Torrents/')
         if dl_type == "m":
             location = movie
         elif dl_type == "t":
@@ -15,6 +18,7 @@ class MagnetDownloader:
         elif dl_type == "o":
             location = other
         outfile = sp.DEVNULL
-        # sp.run(["deluge-console","--path=/srv/ext/Storage/"+location+" add "+magnet], stdout=outfile, stderr=outfile)
-        sp.run(["deluge-console","config --set download_location "+location])
-        sp.run(["deluge-console","add "+magnet])
+        torrent = "-a %s" % magnet
+        location = "-w %s" % location
+        cmd = "transmission-remote --download-dir "+location+" -a " + magnet
+        os.system(cmd)
