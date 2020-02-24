@@ -21,5 +21,5 @@ class MagnetDownloader:
         torrent = "-a %s" % magnet
         location = "-w %s" % location
         # cmd = "transmission-remote --download-dir "+location+" -a " + magnet
-        _cmd = "transmission-remote --download-dir %s -a %s" % ()
+        _cmd = "transmission-remote --download-dir %s -a %s" % (location, magnet)
         os.system(_cmd)
