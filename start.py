@@ -38,7 +38,7 @@ session = {
 while MAIN_LOOP:
     Ui.banner()
     Ui.search_box(session)
-    print("What type of search?\n(m)ovie, (t)v-show, or m(u)sic?")
+    print("What type of search?\n(m)ovie, (t)v-show, m(u)sic, or (o)ther?")
     _search_type = input()
     Ui.banner()
     Ui.search_box(session)
@@ -48,5 +48,7 @@ while MAIN_LOOP:
         results = search.do_search(input())
     elif _search_type == 'u':
         results = search.do_search_music(input())
+    elif _search_type == 'o':
+        results = search.do_search_general(input())
     else: results = search.do_search(input())
     search.print_results(results)
