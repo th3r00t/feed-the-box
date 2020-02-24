@@ -57,6 +57,7 @@ class Ui:
 
 
     def banner(self):
+        os.system('clear')
         sys.stdout.write(self.green)
         title = 'Feed The Box'
         slogan = 'Your media servers hungry, let\'s feed it'
