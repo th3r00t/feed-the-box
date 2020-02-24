@@ -20,5 +20,6 @@ class MagnetDownloader:
         outfile = sp.DEVNULL
         torrent = "-a %s" % magnet
         location = "-w %s" % location
-        cmd = "transmission-remote --download-dir "+location+" -a " + magnet
-        os.system(cmd)
+        # cmd = "transmission-remote --download-dir "+location+" -a " + magnet
+        _cmd = "transmission-remote --download-dir %s -a %s" % ()
+        os.system(_cmd)
